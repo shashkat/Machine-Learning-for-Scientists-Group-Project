@@ -16,6 +16,6 @@ Features `X.npy` and labels `y.npy` will be saved to `data/preprocessed/` dir.
 
 You can load X and y by:
 ```
-X = np.load('./data/processed/X.npy')
-y = np.load('./data/processed/y.npy', allow_pickle=True)
+X = np.load('../data/processed/X.npy')
+y = np.load('../data/processed/y.npy', allow_pickle=True)
 ```
