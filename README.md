@@ -22,6 +22,6 @@ y = np.load('../data/processed/y.npy', allow_pickle=True)
 
 To run PCA:
 ```
-$ python3 PCA.py
+$ python3 src/PCA.py
 ```
 
