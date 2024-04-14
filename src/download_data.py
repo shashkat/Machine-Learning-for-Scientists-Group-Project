@@ -23,7 +23,8 @@ def decompress_gz(source_filepath, dest_filepath):
             shutil.copyfileobj(f_in, f_out)
 
 def main():
-    data_dir = '../data/raw'  # Adjust the path according to your project structure
+    os.makedirs("data", exist_ok=True)
+    data_dir = 'data/raw'  # Adjust the path according to your project structure
     os.makedirs(data_dir, exist_ok=True)
 
     # File URLs and paths
