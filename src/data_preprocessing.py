@@ -54,7 +54,7 @@ def main():
     X, y = prepare_data(tpm_transposed)
 
     # Create processed data directory
-    processed_data_dir = '../data/processed'
+    processed_data_dir = 'data/processed'
     os.makedirs(processed_data_dir, exist_ok=True)  
     
     # Save processed data
