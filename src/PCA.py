@@ -4,7 +4,7 @@ from sklearn.decomposition import PCA
 import pandas as pd
 import numpy as np
 # Load the data
-file_path = 'code/data/bladder/GSE75688_GEO_processed_Breast_Cancer_raw_TPM_matrix.txt'
+file_path = 'data/raw/GSE75688_GEO_processed_Breast_Cancer_raw_TPM_matrix.txt'
 df = pd.read_csv(file_path, sep='\t')
 
 # Extract the numerical data
