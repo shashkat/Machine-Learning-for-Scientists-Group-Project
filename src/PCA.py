@@ -1,8 +1,36 @@
 import matplotlib.pyplot as plt
-from sklearn.decomposition import PCA
+#from sklearn.decomposition import PCA
 
 import pandas as pd
 import numpy as np
+
+# Implement PCA Manually as required by the project.
+def PCA(X, n_components):
+    '''
+    PCA takes data matrix X and the number of principal components to return.
+    It returns the reduced data matrix after PCA transformation.
+    '''
+    # Drop the 'Molecular Subtype' column if it exists
+    if 'Molecular Subtype' in X.columns:
+        X = X.drop('Molecular Subtype', axis=1)
+
+    # Center the data
+    X_meaned = X - np.mean(X, axis=0)
+
+    # Can't use the covariance matrix directly because it's memory intensive
+    # Instead, use the SVD approach to compute the principal components
+    # Perform SVD
+    U, S, Vt = np.linalg.svd(X_meaned, full_matrices=False)
+
+    # The principal components are the right singular vectors (Vt)
+    principal_components = Vt.T
+
+    # To get the reduced dimension data you can multiply the original, mean centered data with principal components
+    X_reduced = np.dot(X_meaned, principal_components)
+
+    return X_reduced[:, :n_components]
+
+
 # Load the data
 file_path = 'data/raw/GSE75688_GEO_processed_Breast_Cancer_raw_TPM_matrix.txt'
 df = pd.read_csv(file_path, sep='\t')
@@ -28,10 +56,8 @@ sample_names = transposed_data.index
 
 # Add a new column for molecular subtypes
 transposed_data['Molecular Subtype'] = [subtype_mapping.get(name.split('_')[0], 'Unknown') for name in sample_names]
-
 # Perform PCA on the transposed data (without scaling)
-pca_transposed = PCA(n_components=3)
-principal_components_transposed = pca_transposed.fit_transform(transposed_data.iloc[:, :-1])  # Exclude the 'Molecular Subtype' column
+principal_components_transposed = PCA(transposed_data, n_components=3)
 
 # Create a DataFrame with the principal components of the transposed data
 pca_transposed_df = pd.DataFrame(data=principal_components_transposed, columns=['PC1', 'PC2', 'PC3'])
@@ -74,4 +100,5 @@ plt.grid(True)
 plt.show()
 
 # Print the explained variance ratio
-print(pca_transposed.explained_variance_ratio_)
+explained_variance_ratio = np.var(principal_components_transposed, axis=0) / np.sum(np.var(principal_components_transposed, axis=0))
+print(explained_variance_ratio)
