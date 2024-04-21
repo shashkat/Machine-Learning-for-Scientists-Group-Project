@@ -69,8 +69,7 @@ class ClassificationMetrics:
             recall = self.calculate_recall(tp, fn)
             f1_score = self.calculate_f1_score(precision, recall)
             class_accuracy = self.calculate_class_accuracy(tp, total)
-
-            print(f"{class_name.ljust(class_col_width)}{precision:<10.2f}{recall:<10.2f}{f1_score:<10.2f}{class_accuracy:<15.2f}{total:<10}")
+            print(f"{str(class_name).ljust(class_col_width)}{precision:<10.2f}{recall:<10.2f}{f1_score:<10.2f}{class_accuracy:<15.2f}{total:<10}")
             # Output each class's metrics
         # Print the overall accuracy of the model
         print(f"\n{'Overall Accuracy:':<30}{self.calculate_accuracy():.2f}")
