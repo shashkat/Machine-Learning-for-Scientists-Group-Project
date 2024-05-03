@@ -12,7 +12,7 @@ In this project, we use breast cancer patient data from experiment GSE75688 to i
 git clone https://github.com/shashkat/Machine-Learning-for-Scientists-Group-Project.git
 ```
 
-- Go to the directory of the project and run the file located in: **src/complete_project_4_methods.ipynb**
+- Go to the directory of the project and run the file located in: **src/complete_project_4_final.ipynb**
 
 - Sections in the file:
     - **Downloading data**: download breast cancer data from experiment GSE75688.
